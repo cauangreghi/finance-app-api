@@ -1,15 +1,18 @@
-import js from "@eslint/js"
 import globals from "globals"
-import { defineConfig } from "eslint/config"
+import js from "@eslint/js"
 
-export default defineConfig([
+export default [
+    js.configs.recommended,
     {
-        files: ["**/*.{js,mjs,cjs}"],
-        plugins: { js },
-        extends: ["eslint:recommended", "prettier"],
+        files: ["**/*.js"],
+        languageOptions: {
+            ecmaVersion: "latest",
+            sourceType: "module",
+            globals: {
+                ...globals.browser,
+                ...globals.jest,
+                ...globals.node,
+            },
+        },
     },
-    {
-        files: ["**/*.{js,mjs,cjs}"],
-        languageOptions: { globals: globals.browser },
-    },
-])
+]

@@ -19,3 +19,10 @@ export const ok = (body) => ({
     statusCode: 200,
     body,
 })
+
+export const emailAlreadyInUseError = (email) => ({
+    statusCode: 400,
+    body: {
+        errorMessage: `Email ${email} already in use`,
+    },
+})

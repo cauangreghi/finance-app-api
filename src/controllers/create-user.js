@@ -1,5 +1,10 @@
 import { CreateUserUseCase } from "../use-cases/create-user.js"
-import { badRequest, created, serverError } from "./helpers.js"
+import {
+    badRequest,
+    created,
+    emailAlreadyInUseError,
+    serverError,
+} from "./helpers.js"
 import validator from "validator"
 
 export class CreateUserController {
@@ -39,6 +44,10 @@ export class CreateUserController {
 
             return created(createUser)
         } catch (error) {
+            if (error instanceof emailAlreadyInUseError) {
+                return badRequest({ message: error.message })
+            }
+
             console.log(error)
             return serverError()
         }

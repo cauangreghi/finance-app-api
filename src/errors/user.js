@@ -11,3 +11,10 @@ export const ServerError = () => ({
         errorMessage: "Internal server error",
     },
 })
+
+export const NotFound = () => ({
+    statusCode: 400,
+    body: {
+        errorMessage: "User not found",
+    },
+})

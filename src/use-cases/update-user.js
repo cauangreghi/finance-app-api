@@ -1,5 +1,5 @@
 import { PostgresGetUserByEmailRepository } from "../repositories/postgres/get-user-by-email.js"
-import { emailAlreadyInUseError } from "../controllers/helpers.js"
+import { emailAlreadyInUseError } from "../controllers/helpers/http.js"
 import bcrypt from "bcrypt"
 import { PostgresUpdateUserRepository } from "../repositories/postgres/update-user.js"
 

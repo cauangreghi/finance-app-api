@@ -17,7 +17,7 @@ app.post("/api/users", async (request, response) => {
 
 app.patch("/api/users/:userId", async (request, response) => {
     const updateUserController = new UpdateUserController()
-    const { statusCode, body } = await updateUserController(request)
+    const { statusCode, body } = await updateUserController.execute(request)
 
     response.status(statusCode).json(body)
 })

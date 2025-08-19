@@ -8,21 +8,7 @@ export const created = (body) => ({
     body,
 })
 
-export const serverError = () => ({
-    statusCode: 500,
-    body: {
-        errorMessage: "Internal server error",
-    },
-})
-
 export const ok = (body) => ({
     statusCode: 200,
     body,
-})
-
-export const emailAlreadyInUseError = (email) => ({
-    statusCode: 400,
-    body: {
-        errorMessage: `Email ${email} already in use`,
-    },
 })

@@ -1,5 +1,6 @@
 import { GetUserByIdUseCase } from "../use-cases/get-user-by-id.js"
-import { ok, serverError } from "./helpers/http.js"
+import { ok } from "./helpers/http.js"
+import { ServerError } from "../errors/user.js"
 import { InvalidIdResponse, checkIfIdIsValid } from "./helpers/user.js"
 
 export class GetUserByIdController {
@@ -20,7 +21,7 @@ export class GetUserByIdController {
             return ok(user)
         } catch (error) {
             console.log(error)
-            return serverError()
+            return ServerError()
         }
     }
 }

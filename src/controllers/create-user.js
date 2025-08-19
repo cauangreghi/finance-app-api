@@ -1,10 +1,8 @@
 import { CreateUserUseCase } from "../use-cases/create-user.js"
-import {
-    badRequest,
-    created,
-    emailAlreadyInUseError,
-    serverError,
-} from "./helpers/http.js"
+import { badRequest, created } from "./helpers/http.js"
+
+import { EmailAlreadyInUseError, ServerError } from "../errors/user.js"
+
 import {
     InvalidPasswordResponse,
     EmailIsAlreadyInUseResponse,
@@ -47,12 +45,12 @@ export class CreateUserController {
 
             return created(createUser)
         } catch (error) {
-            if (error instanceof emailAlreadyInUseError) {
+            if (error instanceof EmailAlreadyInUseError) {
                 return badRequest({ message: error.message })
             }
 
             console.log(error)
-            return serverError()
+            return ServerError()
         }
     }
 }

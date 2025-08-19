@@ -1,9 +1,5 @@
-import {
-    badRequest,
-    emailAlreadyInUseError,
-    ok,
-    serverError,
-} from "./helpers/http.js"
+import { badRequest, ok } from "./helpers/http.js"
+import { ServerError, EmailAlreadyInUseError } from "../errors/user.js"
 import { UpdateUserUseCase } from "../use-cases/update-user.js"
 import {
     InvalidPasswordResponse,
@@ -64,11 +60,11 @@ export class UpdateUserController {
 
             return ok(updatedUser)
         } catch (error) {
-            if (error instanceof emailAlreadyInUseError) {
+            if (error instanceof EmailAlreadyInUseError) {
                 return badRequest({ message: error.message })
             }
             console.log(error)
-            return serverError()
+            return ServerError()
         }
     }
 }

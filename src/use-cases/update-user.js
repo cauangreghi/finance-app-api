@@ -1,5 +1,5 @@
 import { PostgresGetUserByEmailRepository } from "../repositories/postgres/get-user-by-email.js"
-import { emailAlreadyInUseError } from "../controllers/helpers/http.js"
+import { EmailAlreadyInUseError } from "../errors/user.js"
 import bcrypt from "bcrypt"
 import { PostgresUpdateUserRepository } from "../repositories/postgres/update-user.js"
 
@@ -15,7 +15,7 @@ export class UpdateUserUseCase {
                 )
 
             if (userWithProvidedEmail && userWithProvidedEmail.id != userId) {
-                throw emailAlreadyInUseError(updateUserParams.email)
+                throw EmailAlreadyInUseError(updateUserParams.email)
             }
         }
 

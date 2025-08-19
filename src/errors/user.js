@@ -5,7 +5,7 @@ export const EmailAlreadyInUseError = (email) => ({
     },
 })
 
-export const serverError = () => ({
+export const ServerError = () => ({
     statusCode: 500,
     body: {
         errorMessage: "Internal server error",

@@ -1,20 +1,20 @@
-export const EmailAlreadyInUseError = (email) => ({
-    statusCode: 400,
-    body: {
-        errorMessage: `Email ${email} already in use`,
-    },
-})
+export class EmailAlreadyInUseError extends Error {
+    constructor(email) {
+        super(`Email ${email} already in use`)
+        this.statusCode = 400
+    }
+}
 
-export const ServerError = () => ({
-    statusCode: 500,
-    body: {
-        errorMessage: "Internal server error",
-    },
-})
+export class ServerError extends Error {
+    constructor() {
+        super("Internal server error")
+        this.statusCode = 500
+    }
+}
 
-export const NotFound = () => ({
-    statusCode: 400,
-    body: {
-        errorMessage: "User not found",
-    },
-})
+export class NotFound extends Error {
+    constructor() {
+        super("User not found")
+        this.statusCode = 404
+    }
+}
